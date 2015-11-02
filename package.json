@@ -1,0 +1,30 @@
+{
+  "name": "getthering",
+  "version": "1.0.0",
+  "description": "adventure game",
+  "main": "server.js",
+  "scripts": {
+    "test": "start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/williamsnieves/getthering.git"
+  },
+  "keywords": [
+    "games",
+    "phaser",
+    "adventure",
+    "node"
+  ],
+  "author": "willians nieves",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/williamsnieves/getthering/issues"
+  },
+  "homepage": "https://github.com/williamsnieves/getthering",
+  "dependencies": {
+    "babel": "^6.0.15",
+    "babel-core": "^6.0.16",
+    "express": "^4.13.3"
+  }
+}
