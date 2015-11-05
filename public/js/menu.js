@@ -13,6 +13,13 @@ var menuState = {
 		this.btn_play = game.add.button(game.world.centerX, 350, "btnplay", this.startGame,this);
 		this.btn_play.anchor.setTo(0.5, 0.5);
 		this.btn_play.scale.setTo(0.5, 0.5);
+
+		this.emitter = this.game.add.emitter(this.chest.position.x , this.chest.position.y  + 10 , 200);
+
+        this.emitter.makeParticles('star');
+
+        this.emitter.start(false, 1000, 50);
+
 	},
 
 	startGame: function(){
