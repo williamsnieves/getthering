@@ -14,7 +14,7 @@ var loadState = {
 	 	game.load.image('btnplay', 'assets/btnoption.png');
 	 	game.load.image('chest', 'assets/chest.png');
 	 	game.load.image('star','assets/star_particle.png');
-	 	game.load.image('level1bg','assets/level1bg.jpg');
+	 	game.load.image('level1bg','assets/bglevel1big.png');
 	 	game.load.image('floor','assets/floor.jpg');
 	 	//game.load.image('hero','assets/hero.png');
 	 	game.load.image('box','assets/box.png');

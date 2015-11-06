@@ -7,13 +7,13 @@ var level1State = {
 
 		this.bg = game.add.sprite(0, 0, "level1bg");
 
-		this.floor = game.add.sprite(0, 378, "floor");
-
-		this.box1 = game.add.sprite(300, 300, "box");
+		this.floor = game.add.sprite(0, 1900, "floor");
+		game.world.setBounds(0, 0, 640, 2000);
+		/*this.box1 = game.add.sprite(300, 300, "box");
 		this.box1.scale.setTo(0.8, 0.8);
 
 		this.box2 = game.add.sprite(200, 350, "box");
-		this.box2.scale.setTo(0.8, 0.8);
+		this.box2.scale.setTo(0.8, 0.8);*/
 
 		this.hero = game.add.sprite(100,300, 'hero');
 		this.hero.scale.setTo(1.2, 1.2);
@@ -27,7 +27,7 @@ var level1State = {
 	    this.floor.body.immovable = true;
 
 
-	    game.physics.arcade.enableBody(this.box2);
+	    /*game.physics.arcade.enableBody(this.box2);
 
 	    this.box2.body.allowGravity = false;
 	    this.box2.body.immovable = true;
@@ -35,7 +35,26 @@ var level1State = {
 	    game.physics.arcade.enableBody(this.box1);
 
 	    this.box1.body.allowGravity = false;
-	    this.box1.body.immovable = true;
+	    this.box1.body.immovable = true;*/
+
+
+
+
+	    this.boxes = game.add.physicsGroup();
+	    //this.boxes.body.immovable = true;
+	    this.initialHeight = 1920;
+	    
+	    //game.physics.arcade.enableBody(this.boxes);
+
+	    for(var i=0; i<10; i++){
+	    	this.initialHeight -= 80;
+	    	console.log(this.initialHeight);
+	    	this.boxes.create(100 + (i*50), this.initialHeight, 'box');
+	    }
+
+	    this.boxes.forEach(function(box){
+	    	box.body.immovable = true;
+	    })
 
 
 	    this.game.physics.arcade.enable(this.hero);
@@ -44,7 +63,7 @@ var level1State = {
 
 	    this.hero.body.gravity.y = 400;
 
-      	this.hero.body.collideWorldBounds = true;
+      	//this.hero.body.collideWorldBounds = true;
 	    game.physics.enable(this.hero);
 		this.hero.body.allowGravity = true;
 		this.moveLeft = false;
@@ -52,13 +71,13 @@ var level1State = {
 		//add cursors
 		this.cursors = this.game.input.keyboard.createCursorKeys();
 		
+		game.camera.follow(this.hero);
 
 	},
 
 	update: function(){
 		game.physics.arcade.collide(this.hero, this.floor);
-		game.physics.arcade.collide(this.hero, this.box1);
-		game.physics.arcade.collide(this.hero, this.box2);
+		game.physics.arcade.collide(this.hero, this.boxes);
 		this.movePlayer();
 	},
 
