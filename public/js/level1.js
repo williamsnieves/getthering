@@ -8,6 +8,18 @@ var level1State = {
 		this.bg = game.add.sprite(0, 0, "level1bg");
 
 		this.floor = game.add.sprite(0, 1900, "floor");
+		this.chest = game.add.sprite(550, 0, "chest");
+		this.chest.scale.setTo(0.1, 0.1);
+
+
+		game.physics.arcade.enableBody(this.chest);
+		this.chest.body.allowGravity = true;
+		this.chest.body.bounce.y = 0.2;
+
+	    this.chest.body.gravity.y = 400;
+		
+
+
 		game.world.setBounds(0, 0, 640, 2000);
 		/*this.box1 = game.add.sprite(300, 300, "box");
 		this.box1.scale.setTo(0.8, 0.8);
@@ -15,7 +27,7 @@ var level1State = {
 		this.box2 = game.add.sprite(200, 350, "box");
 		this.box2.scale.setTo(0.8, 0.8);*/
 
-		this.hero = game.add.sprite(100,300, 'hero');
+		this.hero = game.add.sprite(500,300, 'hero');
 		this.hero.scale.setTo(1.2, 1.2);
 		//console.log(this.hero);
 		//this.hero.animations.add('left', [0, 1, 2, 3], 10, true);
@@ -46,14 +58,19 @@ var level1State = {
 	    
 	    //game.physics.arcade.enableBody(this.boxes);
 
-	    for(var i=0; i<10; i++){
+	    for(var i=0; i<22; i++){
 	    	this.initialHeight -= 80;
 	    	console.log(this.initialHeight);
-	    	this.boxes.create(100 + (i*50), this.initialHeight, 'box');
+	    	this.boxes.create(100 + (i*20), this.initialHeight, 'box');
 	    }
 
 	    this.boxes.forEach(function(box){
 	    	box.body.immovable = true;
+	    	//box.body.gravity.y = 2;
+	    	//box.body.allowGravity = true;
+	    	//box.body.mass = 100;
+	    	//box.body.gravity.x = 0;
+
 	    })
 
 
@@ -73,16 +90,58 @@ var level1State = {
 		
 		game.camera.follow(this.hero);
 
+		this.emitter = this.game.add.emitter(this.chest.position.x - 500 , this.chest.position.y + 30, 200);
+
+        this.emitter.makeParticles('star');
+        this.emitter.scale.setTo(2.5, 2.5);
+        this.emitter.start(false, 1000, 50);
+        this.chest.addChild(this.emitter);
+
 	},
 
 	update: function(){
 		game.physics.arcade.collide(this.hero, this.floor);
 		game.physics.arcade.collide(this.hero, this.boxes);
+		game.physics.arcade.collide(this.chest, this.boxes);
+		game.physics.arcade.overlap(this.chest, this.hero, this.showRing, null, this);
 		this.movePlayer();
 	},
 
+	showRing: function(){
+		console.log(this.chest);
+		this.chest.destroy();
+		this.emitter.on = false;
+		this.showMessage();
+	},
+
+	showMessage: function(){
+		
+		var graphicOverlay = new Phaser.Graphics(game, 0 , 0);
+		graphicOverlay.beginFill(0x000000, 0.7);
+		graphicOverlay.drawRect(0,0, 720, 520);
+		graphicOverlay.endFill();
+		this.overlay = this.game.add.image(-10,-10,graphicOverlay.generateTexture());
+		this.overlay.inputEnabled = true;
+		this.ring = game.add.sprite(300, 150, 'ring');
+
+		this.emitter = this.game.add.emitter(this.ring.position.x + 50, this.ring.position.y , 200);
+		this.emitter.makeParticles('smallheart');
+        //this.emitter.scale.setTo(2.5, 2.5);
+        this.emitter.start(false, 1000, 50);
+        //this.chest.addChild(this.emitter);
+
+		this.titleGame = game.add.text(150 , 50, 'Will you marry me?', {font : '48px Parisienne', fill: '#FEF160', stroke: '#000', strokeThickness: 4});
+		this.hero.destroy();
+
+	},
+
 	movePlayer: function(){
-		this.hero.body.velocity.x = 0;
+		if(!this.hero.alive){
+			return;
+		}else{
+			this.hero.body.velocity.x = 0;	
+		}
+		
 		if(this.cursors.left.isDown || this.moveLeft){
             this.hero.body.velocity.x = -150;
             //this.player.animations.play('left');
@@ -97,7 +156,7 @@ var level1State = {
           }
 
           if(this.cursors.up.isDown && this.hero.body.touching.down){
-            this.hero.body.velocity.y = -250;
+            this.hero.body.velocity.y = -270;
           }
 	}
 }

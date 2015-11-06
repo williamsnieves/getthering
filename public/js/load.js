@@ -18,6 +18,9 @@ var loadState = {
 	 	game.load.image('floor','assets/floor.jpg');
 	 	//game.load.image('hero','assets/hero.png');
 	 	game.load.image('box','assets/box.png');
+	 	game.load.image('ring','assets/ring.png');
+
+	 	game.load.image('smallheart','assets/heartsmall.png');
 	 	/*game.load.image('balloon', 'assets/balloon.png');
 	 	game.load.image('balloonbad', 'assets/balloonbad.png');
 	 	game.load.image('heart', 'assets/heart.png');
