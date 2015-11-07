@@ -5,6 +5,8 @@ var level1State = {
 	create: function(){
 		game.physics.startSystem(Phaser.Physics.ARCADE);
 
+
+
 		this.bg = game.add.sprite(0, 0, "level1bg");
 
 		this.floor = game.add.sprite(0, 1900, "floor");
@@ -130,9 +132,28 @@ var level1State = {
         this.emitter.start(false, 1000, 50);
         //this.chest.addChild(this.emitter);
 
+
+        this.yesBtn = game.add.button(game.world.centerX - 50, 350, "yes", this.showPositiveAnim,this);
+		this.yesBtn.anchor.setTo(0.5, 0.5);
+		this.yesBtn.scale.setTo(0.5, 0.5);
+
+		this.noBtn = game.add.button(game.world.centerX + 150, 350, "no", this.showNegativeAnim,this);
+		this.noBtn.anchor.setTo(0.5, 0.5);
+		this.noBtn.scale.setTo(0.5, 0.5);
+
 		this.titleGame = game.add.text(150 , 50, 'Will you marry me?', {font : '48px Parisienne', fill: '#FEF160', stroke: '#000', strokeThickness: 4});
 		this.hero.destroy();
 
+
+
+	},
+
+	showPositiveAnim: function(){
+		game.state.start('positive');
+	},
+
+	showNegativeAnim: function(){
+		game.state.start('negative');
 	},
 
 	movePlayer: function(){

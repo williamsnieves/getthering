@@ -8,5 +8,7 @@ game.state.add('boot', bootState);
 game.state.add('load', loadState);
 game.state.add('menu', menuState);
 game.state.add('level1', level1State);
+game.state.add('positive', positiveState);
+game.state.add('negative', negativeState);
 
 game.state.start('boot');

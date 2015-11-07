@@ -12,6 +12,10 @@ var loadState = {
 
 	 	game.load.image('clouds', 'assets/clouds.png');
 	 	game.load.image('btnplay', 'assets/btnoption.png');
+
+	 	game.load.image('yes', 'assets/yes.png');
+	 	game.load.image('no', 'assets/no.png');
+
 	 	game.load.image('chest', 'assets/chest.png');
 	 	game.load.image('star','assets/star_particle.png');
 	 	game.load.image('level1bg','assets/bglevel1big.png');
@@ -21,6 +25,12 @@ var loadState = {
 	 	game.load.image('ring','assets/ring.png');
 
 	 	game.load.image('smallheart','assets/heartsmall.png');
+
+	 	game.load.image('plane','assets/plane.png');
+
+	 	game.load.spritesheet('heart', 'assets/anim.png', 214, 200, 5);
+
+	 	game.load.spritesheet('woman', 'assets/woman.png', 214, 200, 5);
 	 	/*game.load.image('balloon', 'assets/balloon.png');
 	 	game.load.image('balloonbad', 'assets/balloonbad.png');
 	 	game.load.image('heart', 'assets/heart.png');
