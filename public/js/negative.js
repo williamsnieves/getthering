@@ -10,7 +10,14 @@ var negativeState = {
 		this.overlay = this.game.add.image(-10,-10,graphicOverlay.generateTexture());
 		this.overlay.inputEnabled = true;
 
-		this.plane = game.add.sprite(200, 200, 'plane');
+		this.plane = game.add.sprite(0, 200, 'plane');
+
+		game.add.tween(this.plane).to( { x: 700 }, 2000, Phaser.Easing.Linear.None, true);
+
+		this.woman = game.add.sprite(300, 100, 'woman');
+		this.cry = this.woman.animations.add('cry');
+
+        this.woman.animations.play('cry', 5, true);
 		
 		
 

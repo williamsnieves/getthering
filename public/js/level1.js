@@ -51,30 +51,7 @@ var level1State = {
 	    this.box1.body.allowGravity = false;
 	    this.box1.body.immovable = true;*/
 
-
-
-
-	    this.boxes = game.add.physicsGroup();
-	    //this.boxes.body.immovable = true;
-	    this.initialHeight = 1920;
-	    
-	    //game.physics.arcade.enableBody(this.boxes);
-
-	    for(var i=0; i<22; i++){
-	    	this.initialHeight -= 80;
-	    	console.log(this.initialHeight);
-	    	this.boxes.create(100 + (i*20), this.initialHeight, 'box');
-	    }
-
-	    this.boxes.forEach(function(box){
-	    	box.body.immovable = true;
-	    	//box.body.gravity.y = 2;
-	    	//box.body.allowGravity = true;
-	    	//box.body.mass = 100;
-	    	//box.body.gravity.x = 0;
-
-	    })
-
+	    this.createPlatforms();
 
 	    this.game.physics.arcade.enable(this.hero);
 
@@ -99,6 +76,30 @@ var level1State = {
         this.emitter.start(false, 1000, 50);
         this.chest.addChild(this.emitter);
 
+	},
+
+	createPlatforms: function(){
+		this.boxes = game.add.physicsGroup();
+	    //this.boxes.body.immovable = true;
+	    this.initialHeight = 1920;
+	    
+	    //game.physics.arcade.enableBody(this.boxes);
+
+	    for(var i=0; i<22; i++){
+	    	this.initialHeight -= 80;
+	    	//console.log(this.initialHeight);
+	    	//this.boxes.create(100 + (i*20), this.initialHeight, 'box');
+	    	this.boxes.create(Math.random(), this.initialHeight, 'box');
+	    }
+
+	    this.boxes.forEach(function(box){
+	    	box.body.immovable = true;
+	    	//box.body.gravity.y = 2;
+	    	//box.body.allowGravity = true;
+	    	//box.body.mass = 100;
+	    	//box.body.gravity.x = 0;
+
+	    })
 	},
 
 	update: function(){

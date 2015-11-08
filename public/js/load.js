@@ -30,7 +30,7 @@ var loadState = {
 
 	 	game.load.spritesheet('heart', 'assets/anim.png', 214, 200, 5);
 
-	 	game.load.spritesheet('woman', 'assets/woman.png', 214, 200, 5);
+	 	game.load.spritesheet('woman', 'assets/woman.png', 42, 40, 3);
 	 	/*game.load.image('balloon', 'assets/balloon.png');
 	 	game.load.image('balloonbad', 'assets/balloonbad.png');
 	 	game.load.image('heart', 'assets/heart.png');
